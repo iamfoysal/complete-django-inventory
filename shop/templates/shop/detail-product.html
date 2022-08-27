@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}{{product.title}} {% endblock %}
+{% block content %}
+<section class="wrapper">
+  <div class="card-wrapper">
+    <div class="card detail-card">
+      <!-- card left -->
+      <div class="product-imgs">
+        <div class="img-display">
+          <div class="img-showcase">
+            <img src="{{ product.image.url }}" alt="Product image">
+          </div>
+        </div>
+      </div>
+      <!-- card right -->
+      <div class="product-content">
+        <h2 class="product-title">{{ product.title }}</h2>
+        <div class="product-price">
+          <p class="price">Price: <span>$ {{ product.price }}</span></p>
+        </div>
+        <div class="product-detail">
+          <h3>about this item: </h3>
+          <p>{{ product.description }}</p>
+          <ul>
+            <li>Available: <span>in stock {{ product.stock }}</span></li>
+            <li>Category: <span>{{ product.category }}</span></li>
+            <li>Uploaded: <span>{{ product.created_at }}</span></li>
+          </ul>
+          <a href="{% url 'index' %}" style="color:rgb(206, 55, 55); text-decoration:none">Go To Home</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

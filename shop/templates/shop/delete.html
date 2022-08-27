@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Product Delete {% endblock %}
+{% block content %}
+    <section class="wrapper" style="color:#fff; text-decoration:none">
+        <div class="content ">
+          <h2 class="delete-conf">Are you sure to delete?</h2>
+         <div class="delete-content">
+          <h4>Product Name : {{ product.title }}</h4>
+          <h4>Product Category: {{ product.category }}</h4>
+         </div>
+          <form class="delete-form" action="" method="POST">
+              {% csrf_token %}
+             <div class="detele-buttons">
+              <a class="delete-cancel" href="{% url 'index' %}">Cancel</a>
+              <button  type="submit" class="delete-btn">Confirm Delete</button>
+             </div>
+          </form>
+        </div>
+      </section>
+{% endblock %}

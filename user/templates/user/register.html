@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Sign-Up {% endblock %}
+{% block content %}
+    <section class="wrapper">
+        <div class="content">
+          <header>
+            <h1>Register</h1>
+          </header>
+          <section>
+            <form method="POST" class="login-form">
+              {% csrf_token %}
+              {% for field in form %}
+              <div class="input-group">
+                  <label >{{ field.label_tag }} </label>
+                             {{ field }}
+              </div> 
+              <div>
+                  {{ field.errors }}
+              </div>
+              {% endfor %}
+              <div class="input-group">
+                <button type="submit">Register</button>
+              </div>
+            </form>
+          </section>
+          <footer>
+            <small>You have already an account?</small> <a href="{% url 'signin' %}" >Login</a>
+          </footer>
+        </div>
+      </section>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Sign-In {% endblock %}
+{% block content %}
+    <section class="wrapper">
+        <div class="content">
+          <header>
+            <h1>Login</h1>
+          </header>
+          <section>
+            <form method="POST" class="login-form">
+              {% csrf_token %}
+              <div class="input-group">
+                <label for="username">Username or Email</label>
+                <input type="text" placeholder="Username or Email" name ="username">
+              </div>
+              <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" placeholder="Password" name ="password">
+              </div>
+              <div class="input-group"><button type="submit">Login</button></div>
+            </form>
+          </section>
+          <footer>
+           <small>You have no account?</small> <a href="{% url 'register' %}" >Register Now</a>
+          </footer>
+        </div>
+      </section>  
+  {% endblock %}

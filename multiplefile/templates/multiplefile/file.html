@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Upload Multiple Files {% endblock %}
+{% block content %}
+    <section class="wrapper" style="color:#fff; text-decoration:none">
+        <div class="content">
+            <h1>Upload Multiple Files</h1>
+            <form enctype="multipart/form-data" action="/files/multiple_files_upload/" method="POST">
+                {% csrf_token %}
+                <input type="file" name="files" multiple>
+                <button type="submit">Upload</button>
+            </form>
+        </div>
+      </section>
+{% endblock %}

@@ -139,24 +139,16 @@ MEDIA_ROOT = 'media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-
+# Email Settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'shopybusiness.co@gmail.com'
-EMAIL_HOST_PASSWORD  = 'vbpmdomogfdhdrzl'
+EMAIL_HOST_USER = 'email@gmail.com'
+EMAIL_HOST_PASSWORD  = 'password'
 DEFAULT_FROM_EMAIL  = 'inventory management <no-reply@inventory.localhost>'
 
 
-
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.mailtrap.io'
-# EMAIL_USE_TLS = True
-# EMAIL_HOST_USER = '0578def94f573d'
-# EMAIL_HOST_PASSWORD = '88fa12556c9a83'
-# EMAIL_PORT = '2525'
-# DEFAULT_FROM_EMAIL  = 'inventory management <no-reply@inventory.localhost>'
 
 
 LOGIN = "signin/"

@@ -1,14 +1,205 @@
 {% extends 'base.html' %}
 {% block title %}Upload Multiple Files {% endblock %}
+{% load static %}
 {% block content %}
-    <section class="wrapper" style="color:#fff; text-decoration:none">
-        <div class="content">
-            <h1>Upload Multiple Files</h1>
-            <form enctype="multipart/form-data" action="/files/multiple_files_upload/" method="POST">
-                {% csrf_token %}
-                <input type="file" name="files" multiple>
-                <button type="submit">Upload</button>
-            </form>
+<style>
+    .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
+  grid-gap: 2rem;
+  margin: 2rem;
+}
+
+/* demo purposes only */
+
+* {
+  font-family: "Poppins", sans-serif;
+}
+.card {
+  height: 215px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  transition: 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+h3 {
+  color: #d14908;
+  font-size: 24px;
+  margin: 3px 0 0 13px;
+
+}
+
+p {
+  color: white;
+  font-weight: 400;
+  font-size: 16px;
+  align-self: end;
+  margin: 0 0 20px 20px;
+  letter-spacing: 0.5px;
+}
+
+img {
+  position: absolute;
+  top: 0;
+  height: 110%;
+  width: 100%;
+  z-index: -1;
+  transition: 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.card:hover {
+  transform: scale(1.035, 1.035);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+}
+
+.card:hover img {
+  transform: translateY(-10px);
+}
+.download-btn{
+    color: #d14908;
+    font-weight: 400;
+    font-size: 16px;
+    align-self: end;
+    margin: 0 0 62px 116px;
+    letter-spacing: 0.5px;
+}
+@media only screen and (max-width: 991px) {
+    .download-btn{
+    margin: 0px 0 7px 16px;
+    }
+    
+}
+@media only screen and (min-width: 768px){
+    .download-btn{
+    margin: 0px 0 7px 16px;
+    }
+    
+}
+@media only screen and (min-width: 1200px){
+.download-btn {
+    margin: 0px 0 64px 115px;
+}
+}
+
+</style>
+
+<div class="app-container">
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <div class="app-icon">
+                <h4>Inventory</h4>
+            </div>
         </div>
-      </section>
+        <ul class="sidebar-list">
+            <li class="sidebar-list-item active">
+                <a style="margin-left: -7px;" href="{% url 'index' %}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="feather feather-home">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                        <polyline points="9 22 9 12 15 12 15 22" />
+                    </svg>
+                    <span>Home</span>
+                </a>
+            </li>
+
+            <li class="sidebar-list-item active">
+                <div class="filter-button-wrapper">
+                    <button class="action-button filter jsFilter">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-filter">
+                            <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
+                        </svg>
+                        <span>All Category</span>
+                        <div class="filter-menu">
+                            {% for category in categories %}
+                            <a href=" {% url 'category-product' category.id %}">
+                                {{category.name}}
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </button>
+                </div>
+            </li>
+
+            <li class="sidebar-list-item active">
+                <a style="margin-left: -4px;" href="{% url 'upload' %}"><i class="fa-solid fa-file-arrow-up"></i>
+                    <span style="padding-left: 10px;"> Multiple File Upload</span>
+                </a>
+            </li>
+
+        </ul>
+        <div class="account-info">
+            <div class="account-info-name">
+                <a href="#" style="text-decoration: none; color:aqua"><i class="fa-solid fa-user"></i>
+                    {{ request.user.username }}</a>
+            </div>
+            <a class="logout-btn" href="{% url 'signout'%}"><i class="fa-solid fa-right-from-bracket"></i></a>
+        </div>
+    </div>
+
+    <div class="app-content">
+        <div class="app-content-header">
+            <h1 class="app-content-headerText">Products</h1>
+        </div>
+
+        <div class="app-content-actions">
+            <form class="search-form" method="POST">
+                {% csrf_token %}
+                <input class="search-bar" placeholder="search...." name="search-product" type="text" />
+                <button type="submit">Search</button>
+            </form>
+            <div class="app-content-actions" style=" background-color: #4f5561; border-radius: 5px; padding: 5px; ">
+                <form enctype="multipart/form-data" class="search-form" action="/files/multiple_files_upload/"
+                    method="POST">
+                    {% csrf_token %}
+                    <input type="file" class="" name="files" multiple>
+                    <button type="submit">File upload</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="products-area-wrapper tableView">
+            <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet">
+
+            <div class="container" id="container-file">
+               <!-- here is all files -->
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+
+<script>
+    
+function info() {   
+     fetch('http://127.0.0.1:8000/files')
+        .then(response => response.json())
+        .then(function(json){
+            console.log(json)
+            let files = json
+            let card = document.getElementById('container-file')
+            card.innerHTML = ' '
+           
+            for (let i in files) {
+
+            cards= `<div class="card"> 
+                    <img src="${files[i].upload_file}" alt="">
+                    <h3>${files[i].file_id}</h3>
+                    <a class="download-btn" download href="${files[i].upload_file}"><i class="icon-download-alt"></i></a>
+                    </div>`
+            card.innerHTML += cards
+            } 
+        })     
+}
+info();
+
+</script>
+
 {% endblock %}

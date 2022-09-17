@@ -20,7 +20,6 @@ class OverwriteStorage(FileSystemStorage):
         return name
 
 
-
 class File(models.Model):
     file_id = models.AutoField(primary_key=True, verbose_name="File ID")
     upload_file = models.FileField(null=True,blank=True,upload_to=file_directory_path_instance,storage=OverwriteStorage(),verbose_name="Upload File",

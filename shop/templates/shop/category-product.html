@@ -1,199 +1,194 @@
-    {% extends "base.html" %}
-    {% load static %}
-    {% block content %}
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
 
-    <div class="app-container">
-        <div class="sidebar">
-            <div class="sidebar-header">
-                <div class="app-icon">
-                    <h4>Inventory</h4>
-                </div>
-            </div>
-
-            <ul class="sidebar-list">
-                <li class="sidebar-list-item">
-                    <a href="{% url 'index' %}">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="feather feather-home">
-                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                            <polyline points="9 22 9 12 15 12 15 22" />
-                        </svg>
-                        <span>Home</span>
-                    </a>
-                </li>
-                <li class="sidebar-list-item active">
-                    <a href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="feather feather-shopping-bag">
-                            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
-                            <line x1="3" y1="6" x2="21" y2="6" />
-                            <path d="M16 10a4 4 0 0 1-8 0" />
-                        </svg>
-                        <span>Search Results</span>
-                    </a>
-                </li>
-                <li class="sidebar-list-item active">
-                    <div class="filter-button-wrapper">
-                        <button class="action-button filter jsFilter">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="feather feather-filter">
-                                <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
-                            </svg>
-                            <span>All Category</span>
-                            <div class="filter-menu">
-                                {% for category in categories %}
-                                <a href=" {% url 'category-product' category.id %}">
-                                    {{category.name}}
-                                </a>
-                                {% endfor %}
-                            </div>
-                        </button>
-                    </div>
-                </li>
-
-            </ul>
-            <div class="account-info">
-                <div class="account-info-name">
-                    <a href="#" style="text-decoration: none; color:aqua">User : {{ request.user.username }}</a>
-                </div>
-                <a class="logout-btn" href="{% url 'signout'%}"><i class="fa-solid fa-right-from-bracket"></i></a>
+<div class="app-container">
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <div class="app-icon">
+                <h4>Inventory</h4>
             </div>
         </div>
 
-        <div class="app-content">
-            <div class="app-content-header">
-                <h1 class="app-content-headerText">Product by Category</h1>
+        <ul class="sidebar-list">
+            <li class="sidebar-list-item active">
+              <a style="margin-left: -7px;"  href="{% url 'index' %}">
+                <svg  xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="feather feather-home">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                  <polyline points="9 22 9 12 15 12 15 22" />
+                </svg>
+                <span>Home</span>
+              </a>
+            </li>
+      
+            <li class="sidebar-list-item active">
+              <div class="filter-button-wrapper">
+                <button class="action-button filter jsFilter">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="feather feather-filter">
+                    <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
+                  </svg>
+                  <span>All Category</span>
+                  <div class="filter-menu">
+                    {% for category in categories %}
+                    <a href=" {% url 'category-product' category.id %}">
+                      {{category.name}}
+                    </a>
+                    {% endfor %}
+                  </div>
+                </button>
+              </div>
+            </li>
+      
+            <li class="sidebar-list-item active">
+              <a style="margin-left: -4px;" href="{% url 'upload' %}"><i class="fa-solid fa-file-arrow-up"></i>
+                <span style="padding-left: 10px;"> Multiple File Upload</span>
+              </a>
+            </li>
+            
+          </ul>
+        <div class="account-info">
+            <div class="account-info-name">
+                <a href="#" style="text-decoration: none; color:aqua"><i class="fa-solid fa-user"></i> {{ request.user.username }}</a>
             </div>
-            <div class="app-content-actions">
-                <form class="search-form" method="POST">
-                    {% csrf_token %}
-                    <input class="search-bar" placeholder="search...." name="search-product" type="text" />
-                    <button type="submit">Search</button>
-                </form>
-                <div class="app-content-actions-wrapper">
-                    <a href="{% url 'add-product'%}" class="app-content-headerButton">Add Product</a>
+            <a class="logout-btn" href="{% url 'signout'%}"><i class="fa-solid fa-right-from-bracket"></i></a>
+        </div>
+    </div>
+
+    <div class="app-content">
+        <div class="app-content-header">
+            <h1 class="app-content-headerText">Product by Category</h1>
+        </div>
+        <div class="app-content-actions">
+            <form class="search-form" method="POST">
+                {% csrf_token %}
+                <input class="search-bar" placeholder="search...." name="search-product" type="text" />
+                <button type="submit">Search</button>
+            </form>
+            <div class="app-content-actions-wrapper">
+                <a href="{% url 'add-product'%}" class="app-content-headerButton">Add Product</a>
+            </div>
+        </div>
+        <div class="products-area-wrapper tableView">
+            <div class="products-header">
+                <div class="product-cell image">
+                    Items
+                    <button class="sort-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512">
+                            <path fill="currentColor"
+                                d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="product-cell category">
+                    Category<button class="sort-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512">
+                            <path fill="currentColor"
+                                d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="product-cell stock">
+                    Stock<button class="sort-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512">
+                            <path fill="currentColor"
+                                d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="product-cell price">
+                    Price<button class="sort-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512">
+                            <path fill="currentColor"
+                                d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="product-cell status-cell">
+                    Details<button class="sort-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512">
+                        <path fill="currentColor"
+                          d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
+                    </svg>
+                    </button>
+                </div>
+
+                <div class="product-cell status-cell">
+                    Update<button class="sort-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512">
+                            <path fill="currentColor"
+                                d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="product-cell sales">
+                    Delete<button class="sort-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512">
+                            <path fill="currentColor"
+                                d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
+                        </svg>
+                    </button>
                 </div>
             </div>
-            <div class="products-area-wrapper tableView">
-                <div class="products-header">
+
+            {% for result in results %}
+            <div class="product-wrapper">
+                <div class="products-row">
+                    <button class="cell-more-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="feather feather-more-vertical">
+                            <circle cx="12" cy="12" r="1" />
+                            <circle cx="12" cy="5" r="1" />
+                            <circle cx="12" cy="19" r="1" />
+                        </svg>
+                    </button>
                     <div class="product-cell image">
-                        Items
-                        <button class="sort-button">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512">
-                                <path fill="currentColor"
-                                    d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
-                            </svg>
-                        </button>
+                        <img src=" {{ result.image.url }} " alt="product" />
+                        <span>{{ result.title }}</span>
                     </div>
                     <div class="product-cell category">
-                        Category<button class="sort-button">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512">
-                                <path fill="currentColor"
-                                    d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
-                            </svg>
-                        </button>
+                        <span class="cell-label">Category:</span>{{ result.category.name }}
                     </div>
 
                     <div class="product-cell stock">
-                        Stock<button class="sort-button">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512">
-                                <path fill="currentColor"
-                                    d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
-                            </svg>
-                        </button>
+                        <span class="cell-label">Stock:</span>{{ result.stock }}
                     </div>
+
                     <div class="product-cell price">
-                        Price<button class="sort-button">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512">
-                                <path fill="currentColor"
-                                    d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
-                            </svg>
-                        </button>
+                        <span class="cell-label">Price:</span>$ {{ result.price }}
+                    </div>
+                    
+                    <div class="product-cell update-cell">
+                        <span class="cell-label">Details</span>
+                        <a href="{% url 'details-product' result.id %}" class="update active"><i class="fa-solid fa-eye"></i></a>
                     </div>
 
-                    <div class="product-cell status-cell">
-                        Details<button class="sort-button">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512">
-                            <path fill="currentColor"
-                              d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
-                        </svg>
-                        </button>
+                    <div class="product-cell update-cell">
+                        <span class="cell-label">Update</span>
+                        <!-- <span class="update active"
+                ><i class="fa-solid fa-pen-to-square"></i
+                ></span> -->
+                        <a href="#" class="update active"><i class="fa-solid fa-pen-to-square"></i></a>
                     </div>
 
-                    <div class="product-cell status-cell">
-                        Update<button class="sort-button">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512">
-                                <path fill="currentColor"
-                                    d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
-                            </svg>
-                        </button>
-                    </div>
-
-                    <div class="product-cell sales">
-                        Delete<button class="sort-button">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512">
-                                <path fill="currentColor"
-                                    d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
-                            </svg>
-                        </button>
+                    <div class="product-cell">
+                        <span class="cell-label">Delete:</span>
+                        <!-- <span class="delete"><i class="fa-solid fa-trash"></i></span> -->
+                        <a href="#" class="delete"><i class="fa-solid fa-trash"></i></a>
                     </div>
                 </div>
-
-                {% for result in results %}
-                <div class="product-wrapper">
-                    <div class="products-row">
-                        <button class="cell-more-button">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="feather feather-more-vertical">
-                                <circle cx="12" cy="12" r="1" />
-                                <circle cx="12" cy="5" r="1" />
-                                <circle cx="12" cy="19" r="1" />
-                            </svg>
-                        </button>
-                        <div class="product-cell image">
-                            <img src=" {{ result.image.url }} " alt="product" />
-                            <span>{{ result.title }}</span>
-                        </div>
-                        <div class="product-cell category">
-                            <span class="cell-label">Category:</span>{{ result.category.name }}
-                        </div>
-
-                        <div class="product-cell stock">
-                            <span class="cell-label">Stock:</span>{{ result.stock }}
-                        </div>
-
-                        <div class="product-cell price">
-                            <span class="cell-label">Price:</span>$ {{ result.price }}
-                        </div>
-                        
-                        <div class="product-cell update-cell">
-                            <span class="cell-label">Details</span>
-                            <a href="{% url 'details-product' result.id %}" class="update active"><i class="fa-solid fa-eye"></i></a>
-                        </div>
-
-                        <div class="product-cell update-cell">
-                            <span class="cell-label">Update</span>
-                            <!-- <span class="update active"
-                    ><i class="fa-solid fa-pen-to-square"></i
-                    ></span> -->
-                            <a href="#" class="update active"><i class="fa-solid fa-pen-to-square"></i></a>
-                        </div>
-
-                        <div class="product-cell">
-                            <span class="cell-label">Delete:</span>
-                            <!-- <span class="delete"><i class="fa-solid fa-trash"></i></span> -->
-                            <a href="#" class="delete"><i class="fa-solid fa-trash"></i></a>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
             </div>
+            {% endfor %}
         </div>
     </div>
-    {% endblock %}
+</div>
+{% endblock %}
 
-    <!-- <script src="{% static 'js/main.js' %}"></script>  -->
+<!-- <script src="{% static 'js/main.js' %}"></script>  -->

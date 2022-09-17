@@ -1,19 +1,16 @@
 from django.shortcuts import render
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from .models import (File, file_directory_path, )
+from .models import (File,file_directory_path, )
+from shop.models import Category
 from .serializers import FileSerializer
 from rest_framework import viewsets
 
-
-def file_upload(request):
-    return render(request, "multiplefile/file.html")
 
 
 class FileViewSet(viewsets.ModelViewSet):
     queryset = File.objects.all()
     serializer_class = FileSerializer
-
     @action(detail=False, methods=["post"])
     def multiple_files_upload(self, request, *args, **kwargs):
         files = request.FILES.getlist("files")
@@ -28,4 +25,14 @@ class FileViewSet(viewsets.ModelViewSet):
                 new_values = {"upload_file": upload_file}
                 obj = File(**new_values)
                 obj.save()
-        return Response({"STATUS": "Multiple Files Uploaded"})
+        return Response({"STATUS": "Multiple Files Uploaded"},)
+
+def file_upload(request):
+    file = File.objects.all().order_by("-upload_time")
+    categories = Category.objects.all()
+    context={ 
+        'categories': categories,
+        'files': file,
+        }
+    return render(request, "multiplefile/file.html", context)
+    

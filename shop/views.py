@@ -43,8 +43,6 @@ def detail_product_api(request, pk):
 	product_serializer = ProductSerializer(product, many=False)
 	return Response(product_serializer.data)
 
-
-
 @api_view(['DELETE'])
 def delete_product_api(request, pk):
 	product = Product.objects.get(id=pk)

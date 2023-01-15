@@ -1,32 +1,31 @@
-### FILE UPLOAD IN API :
+#### MULTI FILE UPLOAD IN API :
 
     http://127.0.0.1:8000/files/
 
 
-### FILE UPLOAD HTML :
+#### FILE UPLOAD HTML :
 
     http://127.0.0.1:8000/fileupload/
 
 
-
-## shop Api Get :
+#### SHOP API GET :
 
     http://127.0.0.1:8000/api/
 
-## shop Api post :
+#### SHOP API POST:
 
     http://127.0.0.1:8000/api/add/
 
 
-## shop Api Update :
+#### SHOP API UPDATE :
 
     http://127.0.0.1:8000/api/add/
 
-## shop Api details :
+#### SHOP API Details :
 
     http://127.0.0.1:8000/api/detail/
 
-## shop Api delete :
+## SHOP API Delete :
 
     http://127.0.0.1:8000/api/delete/
 

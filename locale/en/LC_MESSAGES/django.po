@@ -1,0 +1,157 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-01-05 00:56+0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: config/forms.py:5
+msgid "first name"
+msgstr ""
+
+#: config/models.py:5
+msgid "title"
+msgstr ""
+
+#: config/models.py:6
+msgid "description"
+msgstr ""
+
+#: config/models.py:7
+msgid "date"
+msgstr ""
+
+#: config/models.py:8
+msgid "price"
+msgstr ""
+
+#: core/settings.py:142
+msgid "English"
+msgstr ""
+
+#: core/settings.py:143
+msgid "French"
+msgstr ""
+
+#: core/settings.py:144
+msgid "Spanish"
+msgstr ""
+
+#: media/2023-01-04/models.py:9 media/2023-01-04/models.py:24
+#: media/2023-01-04/models.py:54 media/2023-01-04/models.py:69
+#: media/2023-01-04/models.py:100 media/2023-01-04/models.py:115
+#: media/2023-01-04/models.py:147
+msgid "Title :"
+msgstr ""
+
+#: media/2023-01-04/models.py:15
+msgid "Blog Category"
+msgstr ""
+
+#: media/2023-01-04/models.py:16
+msgid "Blog Categories"
+msgstr ""
+
+#: media/2023-01-04/models.py:29 media/2023-01-04/models.py:74
+#: media/2023-01-04/models.py:120
+msgid "Slug :"
+msgstr ""
+
+#: media/2023-01-04/models.py:34 media/2023-01-04/models.py:79
+#: media/2023-01-04/models.py:125
+msgid "Thumbnail :"
+msgstr ""
+
+#: media/2023-01-04/models.py:35 media/2023-01-04/models.py:80
+#: media/2023-01-04/models.py:126
+msgid "Publish :"
+msgstr ""
+
+#: media/2023-01-04/models.py:37
+msgid "Will this post be published?"
+msgstr ""
+
+#: media/2023-01-04/models.py:42
+msgid "Blog"
+msgstr ""
+
+#: media/2023-01-04/models.py:43
+msgid "Blogs"
+msgstr ""
+
+#: media/2023-01-04/models.py:60
+msgid "Video Cast Category"
+msgstr ""
+
+#: media/2023-01-04/models.py:61
+msgid "Video Cast Categories"
+msgstr ""
+
+#: media/2023-01-04/models.py:82
+msgid "Will this video be published?"
+msgstr ""
+
+#: media/2023-01-04/models.py:83
+msgid "Video link :"
+msgstr ""
+
+#: media/2023-01-04/models.py:88
+msgid "Video Cast"
+msgstr ""
+
+#: media/2023-01-04/models.py:89
+msgid "Video Casts"
+msgstr ""
+
+#: media/2023-01-04/models.py:106
+msgid "Podcast Category"
+msgstr ""
+
+#: media/2023-01-04/models.py:107
+msgid "Podcast Categories"
+msgstr ""
+
+#: media/2023-01-04/models.py:128
+msgid "Will this audio be published?"
+msgstr ""
+
+#: media/2023-01-04/models.py:130
+msgid "Audio :"
+msgstr ""
+
+#: media/2023-01-04/models.py:135
+msgid "Podcast"
+msgstr ""
+
+#: media/2023-01-04/models.py:136
+msgid "Podcasts"
+msgstr ""
+
+#: media/2023-01-04/models.py:151
+msgid "Description :"
+msgstr ""
+
+#: media/2023-01-04/models.py:155
+msgid "Icon name :"
+msgstr ""
+
+#: media/2023-01-04/models.py:160
+msgid "Skill"
+msgstr ""
+
+#: media/2023-01-04/models.py:161
+msgid "Skills"
+msgstr ""

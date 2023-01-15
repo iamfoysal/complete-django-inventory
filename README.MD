@@ -2,11 +2,9 @@
 
     http://127.0.0.1:8000/files/
 
-
 #### FILE UPLOAD HTML :
 
     http://127.0.0.1:8000/fileupload/
-
 
 #### SHOP API GET :
 
@@ -15,7 +13,6 @@
 #### SHOP API POST:
 
     http://127.0.0.1:8000/api/add/
-
 
 #### SHOP API UPDATE :
 
@@ -28,5 +25,3 @@
 ## SHOP API Delete :
 
     http://127.0.0.1:8000/api/delete/
-
-    

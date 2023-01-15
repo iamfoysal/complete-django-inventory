@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
-
+from django.utils.translation import gettext_lazy as _
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -38,23 +38,39 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
 
     # Project Applications Installed
     'shop.apps.ShopConfig',
     'user.apps.UserConfig',
     'multiplefile.apps.MultiplefileConfig',
     'rest_framework',
+    'config.apps.ConfigConfig',
+    'rosetta',
+    'parler',
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_ALLOW_ALL = False
+
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:8000',
+
+)
+
 
 ROOT_URLCONF = 'core.urls'
 
@@ -73,6 +89,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
@@ -110,18 +127,39 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
+
 LANGUAGE_CODE = 'en-us'
 # LANGUAGE_CODE = 'bn'
-
-
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
+USE_L10N = True
+
 USE_TZ = True
 
+LANGUAGES = (
+    ('en', _('English')),
+    ('fr', _('French')),
+    ('es', _('Spanish')),
+)
 
 
+LOCALE_PATHS = [
+    BASE_DIR / 'locale/',
+]
+
+PARLER_LANGUAGES = {
+    None: (
+        {'code': 'en', },  # English
+        {'code': 'fr', },  # French
+        {'code': 'es', },  # Spanish
+    ),
+    'default': {
+        'fallbacks': ['en'],
+        'hide_untranslated': False,
+    }
+}
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
@@ -145,10 +183,8 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'email@gmail.com'
-EMAIL_HOST_PASSWORD  = 'password'
-DEFAULT_FROM_EMAIL  = 'inventory management <no-reply@inventory.localhost>'
-
-
+EMAIL_HOST_PASSWORD = 'password'
+DEFAULT_FROM_EMAIL = 'inventory management <no-reply@inventory.localhost>'
 
 
 LOGIN = "signin/"

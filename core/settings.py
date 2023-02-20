@@ -69,6 +69,7 @@ CORS_ORIGIN_ALLOW_ALL = False
 
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:8000',
+    'http://localhost:3000',
 
 )
 
@@ -150,17 +151,17 @@ LOCALE_PATHS = [
     BASE_DIR / 'locale/',
 ]
 
-PARLER_LANGUAGES = {
-    None: (
-        {'code': 'en', },  # English
-        {'code': 'fr', },  # French
-        {'code': 'es', },  # Spanish
-    ),
-    'default': {
-        'fallbacks': ['en'],
-        'hide_untranslated': False,
-    }
-}
+# PARLER_LANGUAGES = {
+#     None: (
+#         {'code': 'en', },  # English
+#         {'code': 'fr', },  # French
+#         {'code': 'es', },  # Spanish
+#     ),
+#     'default': {
+#         'fallbacks': ['en'],
+#         'hide_untranslated': False,
+#     }
+# }
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
